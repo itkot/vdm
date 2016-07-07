@@ -37,8 +37,14 @@ fi
 
 	sudo ln -s "$apacheSA$domain.conf" "$apacheSE$domain.conf"
 
-	echo "127.0.0.1 $domain" | sudo tee -a /etc/hosts > /dev/null
- 
+#hosts===============================================
+ 	if grep $domain /etc/hosts; then
+		echo "\033[0;31m domain $domain alrady exists in hosts\033[0m"
+	else
+		echo "127.0.0.1 $domain" | sudo tee -a /etc/hosts > /dev/null
+		echo "$domain added to hosts"
+	fi
+#appache2===========================================
     	echo "restarting Apache"
     	sudo service apache2 restart;
  
