@@ -1,10 +1,12 @@
 #!/bin/bash
 
 domain=$1
+public=$2
+
 apacheSA='/etc/apache2/sites-available/'  
 apacheSE='/etc/apache2/sites-enabled/'
 user=$(whoami);
-wwwPath=/var/www/html/www/$domain;
+wwwPath=/var/www/html/www/$domain/public;
 
 apacheConfig="<VirtualHost *:80>
     ServerName $domain
